@@ -43,6 +43,27 @@ public class CountryRepositoryTest {
         assertEquals(expectedPopulation, actualPopulation, "La population calculée ne correspond pas.");
     }
     @Test
+    void testGetCountryPopulation() {
+        List<Object[]> countryPopulationList = countryDAO.getCountryPopulation();
+
+        // Supposons que vous avez 3 pays dans votre jeu de données de test
+        // et que la population totale pour chacun d'eux est [12, 18, 27]
+        assertEquals(3, countryPopulationList.size(), "Le nombre de pays retourné ne correspond pas.");
+
+        Object[] firstCountryPopulation = countryPopulationList.get(0);
+        assertEquals("France", firstCountryPopulation[0], "Le nom du premier pays ne correspond pas.");
+        assertEquals((long)12, firstCountryPopulation[1], "La population du premier pays ne correspond pas.");
+
+        Object[] secondCountryPopulation = countryPopulationList.get(1);
+        assertEquals("United Kingdom", secondCountryPopulation[0], "Le nom du deuxième pays ne correspond pas.");
+        assertEquals((long)18, secondCountryPopulation[1], "La population du deuxième pays ne correspond pas.");
+
+        Object[] thirdCountryPopulation = countryPopulationList.get(2);
+        assertEquals("United States of America", thirdCountryPopulation[0], "Le nom du troisième pays ne correspond pas.");
+        assertEquals((long)27, thirdCountryPopulation[1], "La population du troisième pays ne correspond pas.");
+    }
+
+    @Test
     @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
     void onSaitCompterLesEnregistrements() {
         log.info("On compte les enregistrements de la table 'Country'");
