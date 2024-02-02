@@ -2,6 +2,7 @@ package monprojet.dao;
 
 import java.util.List;
 
+import monprojet.entity.CountryPopulationProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -24,5 +25,5 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
     Integer calculatePopulationByCountryId(@Param("countryId") Integer countryId);
 
     @Query(value = "SELECT c.name, SUM(ci.population) AS total_population FROM Country c JOIN City ci ON c.id = ci.country.id GROUP BY c.name")
-    List<Object[]> getCountryPopulation();
+    List<CountryPopulationProjection> getCountryPopulation();
 }
