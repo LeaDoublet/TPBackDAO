@@ -21,5 +21,8 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
     List<Object[]> getCountryPopulation(); */
 
     @Query(value = "SELECT SUM(city.population) FROM City city WHERE city.country.id = :countryId")
-    Integer calculatePopulationByCountryId2(@Param("countryId") Integer countryId);
+    Integer calculatePopulationByCountryId(@Param("countryId") Integer countryId);
+
+    @Query(value = "SELECT c.name, SUM(ci.population) AS total_population FROM Country c JOIN City ci ON c.id = ci.country.id GROUP BY c.name")
+    List<Object[]> getCountryPopulation();
 }

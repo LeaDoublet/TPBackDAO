@@ -32,8 +32,16 @@ public class CountryRepositoryTest {
         } catch (DataIntegrityViolationException e) {
             // Si on arrive ici c'est normal, l'exception attendue s'est produite
         }
-    }
 
+
+    }
+    @Test
+    void testCalculatePopulationByCountryId() {
+        // Le pays avec l'ID 1 qui est FRANCE a une population totale de 12 que l'on a affecté à Paris
+        Integer expectedPopulation = 12;
+        Integer actualPopulation = countryDAO.calculatePopulationByCountryId(1);
+        assertEquals(expectedPopulation, actualPopulation, "La population calculée ne correspond pas.");
+    }
     @Test
     @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
     void onSaitCompterLesEnregistrements() {
