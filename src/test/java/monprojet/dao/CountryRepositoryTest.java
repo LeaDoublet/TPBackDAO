@@ -46,8 +46,8 @@ public class CountryRepositoryTest {
     void testGetCountryPopulation() {
         List<Object[]> countryPopulationList = countryDAO.getCountryPopulation();
 
-        // Supposons que vous avez 3 pays dans votre jeu de données de test
-        // et que la population totale pour chacun d'eux est [12, 18, 27]
+        // On 3 pays dans notre jeu de données de test
+        // et la population totale pour chacun d'eux est [12, 18, 27]
         assertEquals(3, countryPopulationList.size(), "Le nombre de pays retourné ne correspond pas.");
 
         Object[] firstCountryPopulation = countryPopulationList.get(0);
